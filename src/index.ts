@@ -11,6 +11,10 @@ app.use("/api/users", TokenRouter);
 
 const PORT = process.env.PORT || 3001;
 
+app.use("/", (_, res) => {
+    res.json({message: "Welcome"})
+})
+
 app.listen(PORT, () => {
     console.log(`✨ listening on port ${PORT} 🚀`);
 });
