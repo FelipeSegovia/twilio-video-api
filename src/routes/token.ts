@@ -18,9 +18,9 @@ const videoToken = (identity: string, room: string) => {
   //         { identity }
   //     );
   const token = new AccessToken(
-    "AC1edee71fe1c02062b5d19c030ed0d296",
-    "1134dd63659c2fe5e5a8f11ef8e8171b",
-    "SK582999eef4618d56961c9635e06a4e2c",
+    "AC1fd9d39d0f8079fe6cde9f8c3a6cdf15",
+    "4721218117e56ce9fbad51ea2f33f4b1",
+    "SKea537c0285222ddb22e399eecc0fbd91",
     { identity }
   );
   token.addGrant(videoGrant);
