@@ -18,8 +18,8 @@ const videoToken = (identity: string, room: string) => {
   //         { identity }
   //     );
   const token = new AccessToken(
-    "AC1fd9d39d0f8079fe6cde9f8c3a6cdf15",
-    "4721218117e56ce9fbad51ea2f33f4b1",
+    "SKcf5fbc226bb61a984f07c61d9f24da73",
+    "Ie4zpHWbl1rriqRsTQv92z2hRvfBGhtM",
     "SKea537c0285222ddb22e399eecc0fbd91",
     { identity }
   );
