@@ -3,39 +3,33 @@ import twilio from "twilio";
 
 const router = express.Router();
 const AccessToken = twilio.jwt.AccessToken;
+const VideoGrant = AccessToken.VideoGrant;
 
-const videoToken = (identity: string, room: string) => {
-  let videoGrant;
-  if (typeof room !== "undefined") {
-    videoGrant = new AccessToken.VideoGrant({ room });
-  } else {
-    videoGrant = new AccessToken.VideoGrant();
-  }
-  // const token = new AccessToken(
-  //         String(process.env.TWILIO_ACCOUNT_SID),
-  //         String(process.env.TWILIO_API_KEY),
-  //         String(process.env.TWILIO_API_SECRET),
-  //         { identity }
-  //     );
+const videoToken = async (identity: string, room: string) => {
+  let videoGrant = new VideoGrant({ room: "test"});
+
   const token = new AccessToken(
-    "AC1fd9d39d0f8079fe6cde9f8c3a6cdf15",
-    "b50b4f0b08c85fe726fab30ab71f92fc",
-    "SKcf5fbc226bb61a984f07c61d9f24da73",
-    // "SKea537c0285222ddb22e399eecc0fbd91",
-    { identity }
-  );
+          String(process.env.TWILIO_ACCOUNT_SID),
+          String(process.env.TWILIO_AUTH_TOKEN),
+          String(process.env.TWILIO_API_KEY),
+          { identity }
+      );
   token.addGrant(videoGrant);
-  return token;
+
+  console.log("Token result =>", token.toJwt())
+
+
+  return token.toJwt();
 };
 
-router.post("/", (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response) => {
   const identity = req.body.identity;
   const room = req.body.room;
-  const token = videoToken(identity, room);
+  const token = await videoToken(identity, room);
   res.set("Content-Type", "application/json");
   res.send(
     JSON.stringify({
-      token: token.toJwt(),
+      token: token
     })
   );
 });
