@@ -9,11 +9,11 @@ const videoToken = async (identity: string, room: string) => {
   let videoGrant = new VideoGrant({ room: "test"});
 
   const token = new AccessToken(
-          String(process.env.TWILIO_ACCOUNT_SID),
-          String(process.env.TWILIO_AUTH_TOKEN),
-          String(process.env.TWILIO_API_KEY),
-          { identity }
-      );
+    'AC4b43abed27693ecfdd7403a4527fe818',
+    'SK4d044783a137f4bb6f9ebf815b3cefc7',
+    'cMgvGcXpdnAjFiDrOICB2lXzrNsifUzZ',
+    { identity }
+)
   token.addGrant(videoGrant);
 
   console.log("Token result =>", token.toJwt())
