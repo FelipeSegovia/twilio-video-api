@@ -6,12 +6,12 @@ const AccessToken = twilio.jwt.AccessToken;
 const VideoGrant = AccessToken.VideoGrant;
 
 const videoToken = async (identity: string, room: string) => {
-  let videoGrant = new VideoGrant({ room: "08pRN000001Lz7xYAC"});
+  let videoGrant = new VideoGrant({ room: "08pRN000001LzO5YAK"});
 
   const token = new AccessToken(
-    'AC4b43abed27693ecfdd7403a4527fe818',
-    'SK4d044783a137f4bb6f9ebf815b3cefc7',
-    'cMgvGcXpdnAjFiDrOICB2lXzrNsifUzZ',
+    process.env.TWILIO_ACCOUNT_SID as string,
+      process.env.TWILIO_API_KEY as string,
+      process.env.TWILIO_AUTH_TOKEN as string,
     { identity }
 )
   token.addGrant(videoGrant);
